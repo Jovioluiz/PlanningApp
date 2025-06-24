@@ -177,7 +177,12 @@
   }
 </style>
 
-<main class="main">
+
+<!-- <div class="top-bar" *ngIf="auth.getUsuario()">
+  Olá, {{ auth.getUsuario() }}!
+  <button (click)="logout()">Sair</button>
+</div> -->
+<!-- <main class="main">
   <div class="content">
     <div class="left-side">
       <svg
@@ -225,7 +230,7 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title }}</h1>
+      <h1>Planning Poker</h1>
       <p>Congratulations! Your app is running. 🎉</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
@@ -322,7 +327,7 @@
       </div>
     </div>
   </div>
-</main>
+</main> -->
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
@@ -333,4 +338,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+<router-outlet>
+
+  
+</router-outlet>
