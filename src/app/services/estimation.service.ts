@@ -11,10 +11,13 @@ export class EstimationService {
   constructor(private http: HttpClient) {}
 
   votar(taskId: string, participante: string, pontos: number): Observable<any> {
+
+    
     return this.http.post(`${this.api}/tarefas/${taskId}/estimativas/votar`, {
       participante,
       pontos
     });
+
   }
 
   listar(taskId: string): Observable<any[]> {

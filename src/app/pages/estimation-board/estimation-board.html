@@ -1,1 +1,33 @@
-<p>estimation-board works!</p>
+<div class="container">
+  <div class="top-bar">
+    <span class="usuario">Usuário: {{ participante }}</span>
+    <!-- <button (click)="logout()">Sair</button> -->
+  </div>
+
+  <div class="tarefa" *ngIf="tarefa">
+    <h2>{{ tarefa.titulo || 'Título da Tarefa' }}</h2>
+    <p>{{ tarefa?.descricao || 'Descrição da Tarefa' }}</p>
+  </div>
+
+  <div class="cartas">
+    <button *ngFor="let carta of cartas" (click)="votar(carta)">
+      {{ carta }}
+    </button>
+  </div>
+
+  <div class="botoes">
+    <button (click)="revelar()">Revelar</button>
+    <button (click)="resetar()">Resetar</button>
+  </div>
+
+  <div class="estimativas">
+    <h3>Estimativas:</h3>
+    <ul>
+      <li *ngFor="let est of estimativas">
+        {{ est.participante }}: {{ est.valor }}
+      </li>
+    </ul>
+  </div>
+
+  <p *ngIf="erro" class="erro-voto">{{ erro }}</p>
+</div>
