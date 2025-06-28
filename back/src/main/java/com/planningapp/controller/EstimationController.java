@@ -10,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tarefas/{taskId}/estimativas")
@@ -76,12 +74,17 @@ public class EstimationController {
         if (jaVotou) {
             return ResponseEntity.status(409).body(Map.of("success", false, "message", "Participante já votou nesta tarefa"));
         }
+        
+        if (!task.isLiberada()) {
+            return ResponseEntity.status(409).body(Map.of("success", false, "message", "Tarefa não está liberada para estimativa."));
+        }
+
     	
         Estimation estimativa = new Estimation();
         estimativa.setTarefa(tarefaOpt.get());
         estimativa.setParticipante(dto.getParticipante());
         estimativa.setPontos(dto.getPontos());
-        estimativa.setRevealed(false); // ou conforme regra
+        estimativa.setRevealed(false); 
 
         estimationService.save(estimativa);
 
@@ -89,8 +92,9 @@ public class EstimationController {
     }
     
     @GetMapping("/listar")
-    public ResponseEntity<List<Estimation>> listar(@PathVariable Long id) {
-        return ResponseEntity.ok(estimationService.findByTaskId(id));
+    public ResponseEntity<?> listarEstimativas(@PathVariable("taskId") Long taskId) {
+        List<Estimation> estimativas = estimationService.findByTaskId(taskId);
+        return ResponseEntity.ok(estimativas);
     }
 //    public List<Map<String, Object>> listarEstimativas(@PathVariable Long taskId) {
 //        List<Estimation> estimativas = estimationService.findByTaskId(taskId);
