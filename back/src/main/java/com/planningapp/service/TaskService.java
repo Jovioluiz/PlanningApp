@@ -29,11 +29,26 @@ public class TaskService {
     	taskRepository.saveAll(tarefas);
     }
     
-    public Optional<Task> findFirstByEstimadaFalseOrderByIdAsc() {
+    public Optional<Task> listarTarefasAdmin() {
     	return taskRepository.findFirstByEstimadaFalseOrderByIdAsc();
+    }
+    
+    public Optional<Task> listarTarefasLiberadas() {
+    	return taskRepository.findFirstByEstimadaFalseAndLiberadaTrueOrderByIdAsc();
     }
     
     public Optional<Task> findById(Long id) {
     	return taskRepository.findById(id);    	
     }
+    
+    public List<Task> listarTarefasLiberadasParaEstimativa() {
+        return taskRepository.findByEstimadaFalseAndLiberadaTrueOrderByIdAsc();
+    }
+    
+    public void liberarTarefa(Long id) {
+        Task tarefa = taskRepository.findById(id).orElseThrow();
+        tarefa.setLiberada(true);
+        taskRepository.save(tarefa);
+    }
+
 }

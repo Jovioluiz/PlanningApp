@@ -14,6 +14,7 @@ public class Task {
 	private Integer prioridade;
 	private String status;
 	private boolean estimada = false;
+	private boolean liberada = false;
 	
 	public Long getId() {
 		return id;
@@ -69,6 +70,14 @@ public class Task {
 
 	public void setEstimada(boolean estimada) {
 		this.estimada = estimada;
+	}
+
+	public boolean isLiberada() {
+		return liberada;
+	}
+
+	public void setLiberada(boolean liberada) {
+		this.liberada = liberada;
 	}
 
 }
