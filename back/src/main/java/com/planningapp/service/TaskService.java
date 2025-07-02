@@ -5,7 +5,7 @@ import com.planningapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Console;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +34,7 @@ public class TaskService {
     	return taskRepository.findByEstimadaFalseAndLiberadaTrueOrderByIdAsc(); //taskRepository.findFirstByEstimadaFalseOrderByIdAsc();
     }
     
+    
     public Optional<Task> listarTarefasLiberadas() {
     	return taskRepository.findFirstByEstimadaFalseAndLiberadaTrueOrderByIdAsc();
     }
@@ -46,6 +47,7 @@ public class TaskService {
         return taskRepository.findByEstimadaFalseAndLiberadaTrueOrderByIdAsc();
     }
     
+
     public Optional<Task> findLiberada() {
         return taskRepository.findFirstByLiberadaTrueAndEstimadaFalseOrderByIdAsc();
     }

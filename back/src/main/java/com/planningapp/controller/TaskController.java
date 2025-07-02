@@ -98,7 +98,7 @@ public class TaskController {
     @GetMapping("/votadas")
     public ResponseEntity<?> tarefasVotadas() {
         return ResponseEntity.ok(taskService.findEstimadas());
-    }
+    } 
    
     
 }

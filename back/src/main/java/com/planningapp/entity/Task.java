@@ -14,6 +14,7 @@ public class Task {
 	private Integer prioridade;
 	private String status;
 	private boolean estimada = false;
+
 	@Column(name = "liberada")
 	private boolean liberada = false;
 	
